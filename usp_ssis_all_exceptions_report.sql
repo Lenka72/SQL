@@ -1,11 +1,11 @@
 USE dw_valuation;
 GO
 
-/****** Object:  StoredProcedure [dbo].[usp_ssis_all_exceptions_report]    Script Date: 2/2/2018 9:49:45 PM ******/
+/****** Object:  StoredProcedure [dbo].[usp_ssis_all_exceptions_report]    Script Date: 3/8/2018 6:08:29 PM ******/
 DROP PROCEDURE dbo.usp_ssis_all_exceptions_report;
 GO
 
-/****** Object:  StoredProcedure [dbo].[usp_ssis_all_exceptions_report]    Script Date: 2/2/2018 9:49:45 PM ******/
+/****** Object:  StoredProcedure [dbo].[usp_ssis_all_exceptions_report]    Script Date: 3/8/2018 6:08:29 PM ******/
 SET ANSI_NULLS ON;
 GO
 
@@ -98,12 +98,16 @@ BEGIN
                            ,E.use32bitruntime AS Use32BitAtRuntime
                            ,CALC.StartDateTime
                            ,CALC.EndDateTime
-                           ,CONVERT(FLOAT, DATEDIFF(MILLISECOND, E.start_time, ISNULL(E.end_time, SYSDATETIMEOFFSET()))) / 1000 AS Duration
+                           ,CASE
+                                    WHEN DATEDIFF(HOUR, E.start_time, ISNULL(E.end_time, SYSDATETIMEOFFSET())) > 24 THEN -1
+                                    ELSE    DATEDIFF(MILLISECOND, E.start_time, ISNULL(E.end_time, SYSDATETIMEOFFSET()))
+                            END AS Duration
                            ,E.caller_name AS CallerName
                            ,E.folder_name AS FolderName
                            ,E.project_name AS ProjectName
                            ,E.package_name AS PackageName
                            ,SD.StatusDescription AS Status
+                           ,CAST(ISNULL( ED.HasDataStatistics, 0) AS BIT) AS HasDataStatistics
         FROM                SSISDB.catalog.executions E
         CROSS   APPLY       (SELECT CONVERT(DATETIME, E.start_time) AS StartDateTime
                                    ,CONVERT(DATETIME, E.end_time) AS EndDateTime) CALC(StartDateTime, EndDateTime)
@@ -114,6 +118,9 @@ BEGIN
            AND  ISNULL(PP.FolderName, E.folder_name) = E.folder_name
            AND  ISNULL(PP.ProjectName, E.project_name) = E.project_name
            AND  ISNULL(PP.StatusValue, E.status) = E.status
+        OUTER   APPLY       (SELECT     DISTINCT 1 AS HasDataStatistics
+                             FROM       SSISDB.catalog.execution_data_statistics EDS
+                             WHERE      EDS.execution_id = E.execution_id) ED
         WHERE               CALC.StartDateTime BETWEEN PP.WindowBegins AND PP.WindowEnds
         ORDER BY            E.execution_id DESC;
 END;
