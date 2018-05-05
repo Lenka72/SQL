@@ -1,11 +1,11 @@
 USE dw_valuation;
 GO
 
-/****** Object:  UserDefinedFunction [dbo].[fn_get_environment_parameter_value]    Script Date: 1/16/2018 7:43:24 PM ******/
+/****** Object:  UserDefinedFunction [dbo].[fn_get_environment_parameter_value]    Script Date: 5/4/2018 7:08:35 PM ******/
 DROP FUNCTION IF EXISTS dbo.fn_get_environment_parameter_value;
 GO
 
-/****** Object:  UserDefinedFunction [dbo].[fn_get_environment_parameter_value]    Script Date: 1/16/2018 7:43:24 PM ******/
+/****** Object:  UserDefinedFunction [dbo].[fn_get_environment_parameter_value]    Script Date: 5/4/2018 7:08:35 PM ******/
 SET ANSI_NULLS ON;
 GO
 
@@ -15,7 +15,7 @@ GO
 -- =============================================
 -- Author:		E. Bakman
 -- Create date: 07/20/2017
--- Description:	This function would return the
+-- Description:	This function would return the 
 -- value of a parameter from SSISDB based on the
 -- Folder and Value name.  It is not intended for
 -- use within a query and should only be used in
@@ -27,15 +27,15 @@ CREATE FUNCTION dbo.fn_get_environment_parameter_value (
         @FolderName NVARCHAR(128)
        ,@EnvironmentName NVARCHAR(128)
        ,@EnvironmentVariableName NVARCHAR(128))
-RETURNS VARCHAR(4000)
+RETURNS SQL_VARIANT
 AS
 BEGIN
         -- Declare the return variable here
-        DECLARE @ParameterValue VARCHAR(4000);
+        DECLARE @ParameterValue SQL_VARIANT;
 
         -- Add the T-SQL statements to compute the return value here
         SELECT  @ParameterValue =
-        (SELECT         CONVERT(VARCHAR(256), EV.value) AS BaseDirectory
+        (SELECT         EV.value AS VariableValue
          FROM           SSISDB.catalog.folders F
          INNER   JOIN   SSISDB.catalog.environments E
          ON F.folder_id = E.folder_id
