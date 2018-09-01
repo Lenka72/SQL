@@ -23,8 +23,8 @@ GO
 CREATE PROCEDURE dbo.usp_ssis_package_performance_report (
         @FolderName VARCHAR(500)
        ,@PackageName VARCHAR(500)
-       ,@FromTimeframe DATE = NULL
-       ,@ToTimeframe DATE = NULL)
+       ,@FromTimeframe DATETIME = NULL
+       ,@ToTimeframe DATETIME = NULL)
 AS
 BEGIN
         SET NOCOUNT ON;
