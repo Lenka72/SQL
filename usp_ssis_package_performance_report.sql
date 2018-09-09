@@ -1,16 +1,17 @@
-USE SSISDBDemo;
+USE RandomActsOfSQL
 GO
 
-/****** Object:  StoredProcedure [dbo].[usp_ssis_package_performance_report]    Script Date: 6/26/2018 10:16:34 AM ******/
-DROP PROCEDURE dbo.usp_ssis_package_performance_report;
+/****** Object:  StoredProcedure dbo.usp_ssis_package_performance_report    Script Date: 9/9/2018 11:55:21 AM ******/
+DROP PROCEDURE IF EXISTS dbo.usp_ssis_package_performance_report
 GO
 
-/****** Object:  StoredProcedure [dbo].[usp_ssis_package_performance_report]    Script Date: 6/26/2018 10:16:34 AM ******/
-SET ANSI_NULLS ON;
+/****** Object:  StoredProcedure dbo.usp_ssis_package_performance_report    Script Date: 9/9/2018 11:55:21 AM ******/
+SET ANSI_NULLS ON
 GO
 
-SET QUOTED_IDENTIFIER ON;
+SET QUOTED_IDENTIFIER ON
 GO
+
 
 -- ================================================
 -- Author:		Elaena Bakman		 
@@ -56,3 +57,5 @@ BEGIN
                         AND CALC2.EndDateTime <= @ToTimeframe;
 END;
 GO
+
+
