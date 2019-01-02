@@ -1,4 +1,4 @@
-USE dw_valuation;
+USE RandomActsOfSQL
 GO
 
 /****** Object:  StoredProcedure [dbo].[usp_ad_group_members_audit_get_recent]    Script Date: 10/3/2018 4:25:56 PM ******/

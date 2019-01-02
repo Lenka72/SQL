@@ -1,8 +1,8 @@
-USE [dw_valuation]
+USE RandomActsOfSQL
 GO
 
 /****** Object:  StoredProcedure [dbo].[usp_partitioned_table_merge_partition]    Script Date: 12/28/2018 12:36:37 PM ******/
-DROP PROCEDURE [dbo].[usp_partitioned_table_merge_partition]
+DROP PROCEDURE dbo.usp_partitioned_table_merge_partition
 GO
 
 /****** Object:  StoredProcedure [dbo].[usp_partitioned_table_merge_partition]    Script Date: 12/28/2018 12:36:37 PM ******/
@@ -25,7 +25,7 @@ GO
 -- PARTITION MERGE RANGE function.
 -- Update:		
 -- ================================================
-CREATE PROCEDURE [dbo].[usp_partitioned_table_merge_partition]
+CREATE PROCEDURE dbo.usp_partitioned_table_merge_partition
     (
      @DateKey BIGINT
     ,@TableName VARCHAR(255)

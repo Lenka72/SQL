@@ -1,8 +1,8 @@
-USE [dw_valuation]
+USE RandomActsOfSQL
 GO
 
 /****** Object:  StoredProcedure [dbo].[usp_partitioned_table_split_partition]    Script Date: 12/28/2018 12:37:03 PM ******/
-DROP PROCEDURE [dbo].[usp_partitioned_table_split_partition]
+DROP PROCEDURE dbo.usp_partitioned_table_split_partition
 GO
 
 /****** Object:  StoredProcedure [dbo].[usp_partitioned_table_split_partition]    Script Date: 12/28/2018 12:37:03 PM ******/
@@ -21,7 +21,7 @@ GO
 -- Description:	This will split out partition for the new date that was just added
 -- Update:		
 -- ================================================
-CREATE PROCEDURE [dbo].[usp_partitioned_table_split_partition] (@DateKey BIGINT
+CREATE PROCEDURE dbo.usp_partitioned_table_split_partition (@DateKey BIGINT
 	,@TableName VARCHAR(255))
 AS
     BEGIN

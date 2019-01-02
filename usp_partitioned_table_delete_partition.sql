@@ -1,8 +1,8 @@
-USE [dw_valuation]
+USE RandomActsOfSQL
 GO
 
 /****** Object:  StoredProcedure [dbo].[usp_partitioned_table_delete_partition]    Script Date: 12/28/2018 12:35:16 PM ******/
-DROP PROCEDURE [dbo].[usp_partitioned_table_delete_partition]
+DROP PROCEDURE dbo.usp_partitioned_table_delete_partition
 GO
 
 /****** Object:  StoredProcedure [dbo].[usp_partitioned_table_delete_partition]    Script Date: 12/28/2018 12:35:16 PM ******/
@@ -21,7 +21,7 @@ GO
 -- Description:	Delete the partition of a partitioned table.
 -- Update:		
 -- ================================================
-CREATE PROCEDURE [dbo].[usp_partitioned_table_delete_partition] (@DateKey BIGINT
+CREATE PROCEDURE dbo.usp_partitioned_table_delete_partition (@DateKey BIGINT
 ,@TableName VARCHAR(255))
 AS
     BEGIN
