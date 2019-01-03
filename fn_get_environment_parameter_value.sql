@@ -1,4 +1,4 @@
-USE dw_valuation;
+USE RandomActsOfSQL;
 GO
 
 /****** Object:  UserDefinedFunction [dbo].[fn_get_environment_parameter_value]    Script Date: 5/4/2018 7:08:35 PM ******/
