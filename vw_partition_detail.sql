@@ -1,4 +1,4 @@
-USE [dw_valuation]
+USE RandomActsOfSQL
 GO
 
 /****** Object:  View [dbo].[vw_partition_detail]    Script Date: 2/22/2018 6:20:37 PM ******/
