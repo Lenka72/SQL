@@ -1,4 +1,4 @@
-USE dw_valuation;
+USE RandomActsOfSQL;
 GO
 
 /****** Object:  StoredProcedure [dbo].[usp_set_environment_parameter_value]    Script Date: 1/16/2018 7:44:45 PM ******/
