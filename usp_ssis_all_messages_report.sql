@@ -1,4 +1,4 @@
-USE [dw_valuation]
+USE RandomActsOfSQL
 GO
 
 /****** Object:  StoredProcedure [dbo].[usp_ssis_all_messages_report]    Script Date: 2/2/2018 10:07:02 PM ******/
